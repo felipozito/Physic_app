@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block title %}Select Formula - PhysicsApp{%
+endblock %} {% block content %}
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">
+    Selecciona el tema que Deseas
+  </h1>
+  <form action="/form" method="post" class="space-y-6">
+    <div class="space-y-4">
+      <label for="formula" class="block text-lg font-medium text-gray-700"
+        >Temas de Fisica:</label
+      >
+      <select
+        name="formula"
+        id="formula"
+        class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      >
+        {% for formula in formulas %}
+        <option value="{{ formula }}">{{ formula }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+    >
+      Continuar
+    </button>
+  </form>
+</div>
+{% endblock %}

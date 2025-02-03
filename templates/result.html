@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}Result - PhysicsApp{% endblock %} {%
+block content %}
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Resultado Calculado</h1>
+
+  <div class="space-y-6">
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h2 class="text-lg font-medium text-gray-700 mb-2">Formula Correcta:</h2>
+      <p class="text-gray-900 bg-gray-100 p-3 rounded">\[ {{ formula }} \]</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+        <h2 class="text-lg font-medium text-blue-700 mb-2">
+          Variable Calculada:
+        </h2>
+        <p class="text-blue-900 font-semibold">{{ unknown_var }}</p>
+      </div>
+
+      <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+        <h2 class="text-lg font-medium text-green-700 mb-2">
+          Resultado (SI Units):
+        </h2>
+        <p class="text-green-900 font-semibold">{{ solved_value }}</p>
+      </div>
+    </div>
+
+    <a
+      href="/"
+      class="inline-block w-full text-center bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+    >
+      Calcular Otra Variable
+    </a>
+  </div>
+</div>
+{% endblock %}

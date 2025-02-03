@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}PhysicsApp{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <nav class="bg-blue-600 text-white p-4 shadow-lg">
+      <div class="container mx-auto">
+        <a href="/" class="text-2xl font-bold">PhysicsApp</a>
+      </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 relative bottom-0 left-0">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2024 PhysicsApp. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
