@@ -1,27 +1,42 @@
 {% extends "base.html" %} {% block title %}Result - PhysicsApp{% endblock %} {%
 block content %}
-<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">Resultado Calculado</h1>
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Resultado del Cálculo</h1>
 
   <div class="space-y-6">
-    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-      <h2 class="text-lg font-medium text-gray-700 mb-2">Formula Correcta:</h2>
-      <p class="text-gray-900 bg-gray-100 p-3 rounded">\[ {{ formula }} \]</p>
+    <!-- Variable Calculada Section -->
+    <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+      <h2 class="text-xl font-bold text-blue-800 mb-4">
+        Variable Calculada: {{ unknown_var }}
+      </h2>
+      <div class="bg-white p-4 rounded-lg">
+        <p class="text-lg font-medium text-blue-700">Fórmula utilizada:</p>
+        <p class="text-gray-900 bg-gray-50 p-3 rounded mt-2">
+          \[ {{ formula }} \]
+        </p>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-        <h2 class="text-lg font-medium text-blue-700 mb-2">
-          Variable Calculada:
-        </h2>
-        <p class="text-blue-900 font-semibold">{{ unknown_var }}</p>
+    <!-- Pasos de Solución Section -->
+    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Proceso de Solución:</h2>
+      <div class="space-y-4">
+        {% for step in steps %}
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <p class="text-gray-700">\[ {{ step }} \]</p>
+        </div>
+        {% endfor %}
       </div>
+    </div>
 
-      <div class="bg-green-50 p-4 rounded-lg border border-green-200">
-        <h2 class="text-lg font-medium text-green-700 mb-2">
-          Resultado (SI Units):
-        </h2>
-        <p class="text-green-900 font-semibold">{{ solved_value }}</p>
+    <!-- Resultado Final Section -->
+    <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+      <h2 class="text-xl font-bold text-green-800 mb-2">Resultado Final</h2>
+      <div class="bg-white p-4 rounded-lg">
+        <p class="text-2xl font-bold text-green-600">
+          {{ solved_value }}
+          <span class="text-sm font-normal text-green-500">(Unidades SI)</span>
+        </p>
       </div>
     </div>
 

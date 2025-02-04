@@ -14,6 +14,10 @@ def crear_simbolos():
         'm': sp.Symbol('m'),     # masa
         'F': sp.Symbol('F'),     # fuerza
         'Ft': sp.Symbol('Ft'),   # fuerza total
+        'F1':sp.Symbol('F1'),  # fuerza F1 total
+        'F2':sp.Symbol('F2'),  # fuerza F2 total
+        'F2x':sp.Symbol('F2x'),    # fuerza 2x total
+        'F2y':sp.Symbol('F2y'),    # fuerza 2y total
         'wo': sp.Symbol('wo'),   # velocidad angular inicial
         'wf': sp.Symbol('wf'),   # velocidad angular final
         'at': sp.Symbol('at'),   # aceleración angular
@@ -35,7 +39,7 @@ def crear_simbolos():
         'ek': sp.Symbol('ek'),    # energía elástica
         'W': sp.Symbol('W'),     # trabajo
         'V': sp.Symbol('V'),     # voltaje
-        'I': sp.Symbol('I'),     # corriente
+        'I_': sp.Symbol('I'),     # corriente
         'P': sp.Symbol('P'),     # potencia
         'R': sp.Symbol('R'),     # resistencia
         
@@ -52,6 +56,10 @@ restricciones_unidades = {
     'a': ['m/s²'],                   # aceleración en m/s²
     'F': ['N'],                      # fuerza en Newtons
     'Ft': ['N'],                      # fuerza total en Newtons
+    'F1': ['N'],                      # fuerza F1 total en Newtons
+    'F2': ['N'],                      # fuerza F2 total en Newtons
+    'F2x': ['N'],                      # fuerza 2x total en Newtons
+    'F2y': ['N'],                      # fuerza 2y total en Newtons
     'q1': ['uC', 'nC', 'pC'],        # carga en Coulombs
     'q2': ['uC', 'nC', 'pC'],        # carga en Coulombs
     'q3': ['uC', 'nC', 'pC'],        # carga en Coulombs
@@ -65,7 +73,7 @@ restricciones_unidades = {
     'ep':['J'],                     # energía potencial
     'ec':['J'],                     # energía cinética
     'ek':['J'],                     # energía elástica
-    'theta':['rad'],                # ángulo
+    'theta':['rad','deg'],                # ángulo
     'at':['rad/s²'],                # aceleración tangencial
     'l':['m','cm'],                 # longitud de arco en metros o centímetros
     'w':['rad/s'],                  # velocidad angular
@@ -74,7 +82,7 @@ restricciones_unidades = {
     'wf':['rad/s'],                 # velocidad angular final
     'W':['J'],                     # trabajo
     'V':['V','mV'],                      # voltaje
-    'I':['A','mA'],                      # corriente
+    'I_':['A','mA'],                      # corriente
     'P':['Watts'],                      # potencia
     'R':['Ohm','MOhm','KOhm'],                    # resistencia
     

@@ -30,5 +30,7 @@ conversiones_unidades = {
     'A': 1,            # Amperios
     'mA': 1e-3,        # Miliamperios
     'Watts': 1,        # Watts
+    'deg' :1   ,       # Grados
+    'rad' :(2*3.1415)/360 ,# Radianes
     
 }
