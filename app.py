@@ -55,6 +55,7 @@ def calcular():
                     
         if(tema_seleccionado == "LEY DE COULOMB ANGULO"):
             ans=Coulomb_angle(valores_conocidos)
+            print(ans)
             return render_template(
                             'result.html',
                             formula_name=tema_seleccionado,
