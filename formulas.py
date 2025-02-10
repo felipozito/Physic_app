@@ -5,11 +5,11 @@ import os
 
 formulas = {
     "MRU": {
-        "instructions": "Movimiento Rectilíneo Uniforme: Útil para calcular velocidad constante, distancia o tiempo.",
+        "instrucciones": "Movimiento Rectilíneo Uniforme: Útil para calcular velocidad constante, distancia o tiempo.",
         "formulas": ["v=d/t"]
     },
     "MRUV": {
-        "instructions": "Movimiento Rectilíneo Uniformemente Variado: Para movimientos con aceleración constante.",
+        "instrucciones": "Movimiento Rectilíneo Uniformemente Variado: Para movimientos con aceleración constante.",
         "formulas": [
             "vf=vo+a*t",
             "d=vo*t+(1/2)*a*t^2",
@@ -18,7 +18,7 @@ formulas = {
         ]
     },
     "CAIDA LIBRE": {
-        "instructions": "Caída Libre: Movimiento vertical bajo la acción de la gravedad (g=9.81 m/s²).",
+        "instrucciones": "Caída Libre: Movimiento vertical bajo la acción de la gravedad (g=9.81 m/s²).",
         "formulas": [
             "vf=vo+9.81*t",
             "h=vo*t+1/2*9.81*t^2",
@@ -26,7 +26,7 @@ formulas = {
         ]
     },
     "LANZAMIENTO VERTICAL": {
-        "instructions": "Lanzamiento Vertical: Movimiento vertical hacia arriba contra la gravedad.",
+        "instrucciones": "Lanzamiento Vertical: Movimiento vertical hacia arriba contra la gravedad.",
         "formulas": [
             "vf=vo-9.81*t",
             "h=vo*t-1/2*9.81*t^2",
@@ -34,14 +34,14 @@ formulas = {
         ]
     },
     "MCU": {
-        "instructions": "Movimiento Circular Uniforme: Para objetos que se mueven en círculo a velocidad constante.",
+        "instrucciones": "Movimiento Circular Uniforme: Para objetos que se mueven en círculo a velocidad constante.",
         "formulas": [
             "v=l/t",
             "w=theta/t"
         ]
     },
     "MCUV": {
-        "instructions": "Movimiento Circular Uniformemente Variado: Para movimientos circulares con aceleración constante.",
+        "instrucciones": "Movimiento Circular Uniformemente Variado: Para movimientos circulares con aceleración constante.",
         "formulas": [
             "vf=vo+a*t",
             "l=vo*t+(1/2)*a*t^2",
@@ -52,29 +52,46 @@ formulas = {
         ]
     },
     "LEY_DE_COULOMB": {
-        "instructions": "Ley de Coulomb: Calcula la fuerza electrostática entre dos cargas puntuales.",
+        "instrucciones": "Ley de Coulomb: Calcula la fuerza electrostática entre dos cargas puntuales.",
         "formulas": [
             "F=(9*10^9)*(q1*q2)/r^2"
         ]
     },
     "LEY_DE_COULOMB 2 CARGAS LINEA RECTA": {
-        "instructions": "Ley de Coulomb para dos cargas en línea recta: Suma de fuerzas electrostáticas. RECORDAR  LA CARGA EN COMUN ES Q2",
+        "instrucciones": "Ley de Coulomb para dos cargas en línea recta: Suma de fuerzas electrostáticas. RECORDAR  LA CARGA EN COMUN ES Q2",
         "formulas": [
             "Ft=((9*10^9)*(q1*q2)/r1^2) +((9*10^9)*(q2*q3)/r2^2)"
         ]
     },
-    "LEY_DE_COULLOMB ANGULO": {
-        "instructions": "Ley de Coulomb con ángulo: Calcula la fuerza resultante considerando componentes vectoriales.",
-        "formulas": [
-            'F1=(9*10^9)*(q1*q2)/r1^2',
-            'F2=(9*10^9)*(q3*q2)/r2^2',
-            'F2x=F2sin(theta)',
-            'F2y=F2cos(theta)',
-            'Ft=((F1+F2x)^2+(F2y)^2)^-2'
+    "LEY DE COULOMB ANGULO": {
+        "instrucciones": "Ley de Coulomb con ángulo: Calcula la fuerza resultante considerando componentes vectoriales.",
+        "variables": ["Ft","q1", "q2", "q3", "r1", "r2", "theta"],
+        "steps": [
+            {
+                "name": "Calcular F1",
+                "formula": "F1=(9*10^9)*(q1*q2)/r1^2"
+            },
+            {
+                "name": "Calcular F2",
+                "formula": "F2=(9*10^9)*(q3*q2)/r2^2"
+            },
+            {
+                "name": "Calcular componente x de F2",
+                "formula": "F2x=F2*sin(theta)"
+            },
+            {
+                "name": "Calcular componente y de F2",
+                "formula": "F2y=F2*cos(theta)"
+            },
+            {
+                "name": "Calcular Fuerza Total",
+                "formula": "Ft=((F1+F2x)^2+(F2y)^2)^(1/2)"
+            }
         ]
     },
+    
     "ENERGIA": {
-        "instructions": "Energía: Calcula diferentes tipos de energía (potencial, cinética, elástica).",
+        "instrucciones": "Energía: Calcula diferentes tipos de energía (potencial, cinética, elástica).",
         "formulas": [
             "ep=m*9.81*h",
             "ec=1/2*m*v^2",
@@ -82,19 +99,19 @@ formulas = {
         ]
     },
     "TRABAJO": {
-        "instructions": "Trabajo: Calcula el trabajo realizado por una fuerza constante.",
+        "instrucciones": "Trabajo: Calcula el trabajo realizado por una fuerza constante.",
         "formulas": [
             "W=F*d"
         ]
     },
     "POTENCIA": {
-        "instructions": "Potencia: Calcula la rapidez con que se realiza un trabajo.",
+        "instrucciones": "Potencia: Calcula la rapidez con que se realiza un trabajo.",
         "formulas": [
             "P=W/t"
         ]
     },
     "LEY DE OHM": {
-        "instructions": "Ley de Ohm: Relaciona voltaje (V), corriente (I) y resistencia (R). P es la potencia.",
+        "instrucciones": "Ley de Ohm: Relaciona voltaje (V), corriente (I) y resistencia (R). P es la potencia.",
         "formulas": [
             "P=V^2/R",
             "P=I_^2*R",
@@ -105,37 +122,56 @@ formulas = {
 }
 
 def convert_formulas_to_sympy(formulas_dict):
-    symbolic_formulas = {}
-    instructions = {}
-    
-    for category, data in formulas_dict.items():
-        symbolic_formulas[category] = []
-        instructions[category] = data["instructions"]
-        print(data)
-        
-        for formula in data["formulas"]:
-            left, right = formula.split('=')
-            left_expr = sp.sympify(left)
-            right_expr = sp.sympify(right)
-            eq = sp.Eq(left_expr, right_expr)
-            symbolic_formulas[category].append({
-                'equation': eq,
-                'latex': sp.latex(eq),
-                'steps': []  # Will store solution steps
-            })
-    
-    return symbolic_formulas, instructions
+    temas_simbolica = {}
+    instrucciones = {}
+    variables = {}
+    for tema, data in formulas_dict.items():
+        temas_simbolica[tema] = []
+        instrucciones[tema] = data["instrucciones"]
+        if 'variables' in data:
+            variables[tema] = data["variables"]  
+        else:
+            variables[tema] = None 
+        if "steps" in data:
+            # Obtener pasos a simbologia
+            for step in data["steps"]:
+                formula = step["formula"] 
+                left, right = formula.split('=')#Separamos la ecuacion donde este igual (variable, formula)
+                left_expr = sp.sympify(left) #Creo la expresion (variable)
+                right_expr = sp.sympify(right) #Creo la expresion (formula)
+                eq = sp.Eq(left_expr, right_expr) #Creo la ecuacion (variable, formula)
+                temas_simbolica[tema].append({
+                    'equation': eq,
+                    'latex': sp.latex(eq),
+                    'step_name': step["name"]
+                })
+        else:
+            # Obtener formulas a simbologia
+            for formula in data["formulas"]:
+                left, right = formula.split('=')#Separamos la ecuacion donde este igual (variable, formula)
+                left_expr = sp.sympify(left) #Creo la expresion (variable)
+                right_expr = sp.sympify(right)#Creo la expresion (formula)
+                eq = sp.Eq(left_expr, right_expr) #Creo la ecuacion (variable, formula)
+                temas_simbolica[tema].append({
+                    'equation': eq,
+                    'latex': sp.latex(eq),
+                    'step_name': None
+                })
+
+    return temas_simbolica, instrucciones, variables
 
 # Convert formulas directly without reading the file
-symbolic_formulas, formula_instructions = convert_formulas_to_sympy(formulas)
+temas_simbolica, instrucciones_formulas, variables = convert_formulas_to_sympy(formulas)
 
-if symbolic_formulas:
-    print("Fórmulas convertidas exitosamente:")
-    for category, formula_list in symbolic_formulas.items():
-        #print(f"\n{category}:")
+if temas_simbolica:
+    #print(temas_simbolica)
+    #print(instrucciones_formulas)
+    #print(variables)
+    for tema, data in temas_simbolica.items():
+        ##print(f"\n{tema}:")
         pass
-        for formula in formula_list:
-         #   print(f"  {formula}")
-         pass
+        for formula in data:
+           ##print(f"  {formula}")
+           pass
 else:
     print("Error en la conversión de fórmulas")

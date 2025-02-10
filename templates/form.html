@@ -1,26 +1,27 @@
 {% extends "base.html" %} {% block title %}Enter Variables - PhysicsApp{%
 endblock %} {% block content %}
 <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ formula_name }}</h1>
-  <div id="formula-display" class="mb-6 p-4 bg-gray-50 rounded-lg">
-    <div class="formula-list space-y-2 text-gray-600"></div>
-  </div>
-
-  <!-- Add this near the top of your form -->
-  <div class="instructions">
-    <p><strong>Instrucciones:</strong> {{ formula_instruction }}</p>
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ tema_seleccionado }}</h1>
+  <div id="tema-display" class="mb-6 p-4 bg-gray-200 rounded-lg">
+    <div class="space-y-2 text-gray-800 instrucciones">
+      <p><strong>Instrucciones:</strong> {{ instrucciones_formulas }}</p>
+    </div>
   </div>
 
   <form action="/calculate" method="post" class="space-y-8" id="physics-form">
-    <input type="hidden" name="formula_name" value="{{ formula_name }}" />
+    <input
+      type="hidden"
+      name="tema_seleccionado"
+      value="{{ tema_seleccionado }}"
+    />
 
     <div class="space-y-4">
-      <label for="target_var" class="block text-lg font-medium text-gray-700"
-        >Seleccione la variable que desea:</label
+      <label for="variable" class="block text-lg font-medium text-gray-700">
+        Seleccione la variable que desea:</label
       >
       <select
-        name="target_var"
-        id="target_var"
+        name="variable"
+        id="variable"
         onchange="updateForm()"
         class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       >
@@ -45,9 +46,6 @@ endblock %} {% block content %}
             class="block text-sm font-medium text-gray-700"
           >
             {{ var }}
-            <span class="text-xs text-gray-500 ml-1"
-              >({{ unit_restrictions[var][0] }})</span
-            >
           </label>
           <div class="mt-1 flex space-x-2">
             <input
@@ -55,7 +53,7 @@ endblock %} {% block content %}
               step="any"
               id="value_{{ var }}"
               name="value_{{ var }}"
-              placeholder="Value"
+              placeholder="Ingrese el valor de {{var}}"
               class="flex-1 p-2 border border-gray-300 rounded-md shadow-sm"
             />
             <select
@@ -63,7 +61,7 @@ endblock %} {% block content %}
               id="unit_{{ var }}"
               class="w-1/3 p-2 border border-gray-300 rounded-md shadow-sm bg-gray-50"
             >
-              {% for unit in unit_restrictions[var] %}
+              {% for unit in restricciones_unidades[var] %}
               <option value="{{ unit }}">{{ unit }}</option>
               {% endfor %}
             </select>
@@ -84,15 +82,13 @@ endblock %} {% block content %}
 
 <script>
   function updateForm() {
-    const targetVar = document.getElementById("target_var").value;
+    const selectedVar = document.getElementById("variable").value;
     const inputs = document.querySelectorAll(".variable-input");
-
     inputs.forEach((input) => {
       const varName = input.dataset.var;
       const valueInput = input.querySelector(`input[name="value_${varName}"]`);
       const unitSelect = input.querySelector(`select[name="unit_${varName}"]`);
-
-      if (varName === targetVar) {
+      if (varName === selectedVar) {
         valueInput.disabled = true;
         unitSelect.disabled = true;
         valueInput.value = "";
@@ -102,7 +98,6 @@ endblock %} {% block content %}
       }
     });
   }
-
   // Call updateForm on page load
   document.addEventListener("DOMContentLoaded", updateForm);
 </script>

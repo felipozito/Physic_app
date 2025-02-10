@@ -73,7 +73,7 @@ restricciones_unidades = {
     'ep':['J'],                     # energía potencial
     'ec':['J'],                     # energía cinética
     'ek':['J'],                     # energía elástica
-    'theta':['rad','deg'],                # ángulo
+    'theta':['deg','rad',],                # ángulo
     'at':['rad/s²'],                # aceleración tangencial
     'l':['m','cm'],                 # longitud de arco en metros o centímetros
     'w':['rad/s'],                  # velocidad angular

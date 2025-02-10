@@ -32,5 +32,4 @@ conversiones_unidades = {
     'Watts': 1,        # Watts
     'deg' :1   ,       # Grados
     'rad' :(2*3.1415)/360 ,# Radianes
-    
 }
